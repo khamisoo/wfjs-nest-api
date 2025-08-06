@@ -14,8 +14,8 @@ export class Workflow {
   @Prop({ default: 'created' })
   status: string;
 
-  @Prop({ default: null })
-  currentStep: string | null; // Tracks the current step ID or name (e.g., "StartEvent_1")
+@Prop({ type: String, default: null }) // Explicitly define as String, allow null
+  currentStep: string | null;
   
   // Explicitly declare timestamps fields
   createdAt: Date;
