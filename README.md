@@ -1,18 +1,3 @@
-Here’s your updated `README.md` with the **additional BPMN Workflow App section** added **after the NestJS section**, clearly separated and styled consistently.
-
----
-
-### ✅ Changes Summary:
-
-* Inserted your `<p align="center">` block after the Nest logo.
-* Added a new section with documentation explaining how your JSON-based BPMN workflow app works.
-* Preserved the original NestJS README format.
-
----
-
-### 📄 Updated `README.md` (with the new section inserted after Nest)
-
-````markdown
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
@@ -176,24 +161,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-* Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-* Website - [https://nestjs.com](https://nestjs.com/)
-* Twitter - [@nestframework](https://twitter.com/nestframework)
+* Author - [AK](https://x.com/Abdelhameed_k_)
 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-
-```
-
----
-
-### ✅ Want This as a File?
-
-I can export the updated `README.md` as:
-- 📄 `.md` file (Markdown)
-- 📄 `.docx` (Word)
-- 📄 `.pdf` (Printable doc)
-
-Let me know how you’d like it!
-```
