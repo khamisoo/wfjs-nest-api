@@ -10,7 +10,7 @@ const BpmnModdle = require('bpmn-moddle');
 
 @Injectable()
 export class WorkflowsService {
-  private baseDir = path.join(__dirname, '../../bpmn');
+private baseDir = path.join(process.cwd(), 'bpmn');
 
   constructor(
     @InjectModel(Workflow.name) private workflowModel: Model<WorkflowDocument>,
