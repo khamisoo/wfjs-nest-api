@@ -41,4 +41,24 @@ export class WorkflowsController {
   async updateWorkflowStep(@Param('name') name: string, @Body('stepId') stepId: string) {
     return this.workflowsService.updateWorkflowStep(name, stepId);
   }
+
+  @Post(':name/start')
+  async start(@Param('name') name: string) {
+    return this.workflowsService.startExecution(name);
+  }
+
+  @Post(':name/resume')
+  async resume(@Param('name') name: string) {
+    return this.workflowsService.resumeExecution(name);
+  }
+
+  @Get(':name/state')
+  async state(@Param('name') name: string) {
+    return this.workflowsService.getExecutionState(name);
+  }
+
+  @Delete(':name/stop')
+  async stop(@Param('name') name: string) {
+    return this.workflowsService.stopExecution(name);
+  }
 }

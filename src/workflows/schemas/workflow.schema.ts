@@ -14,10 +14,9 @@ export class Workflow {
   @Prop({ default: 'created' })
   status: string;
 
-@Prop({ type: String, default: null }) // Explicitly define as String, allow null
+  @Prop({ type: String, default: null })
   currentStep: string | null;
-  
-  // Explicitly declare timestamps fields
+
   createdAt: Date;
 
   updatedAt: Date;

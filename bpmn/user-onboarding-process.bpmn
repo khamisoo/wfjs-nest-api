@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn"><bpmn:process id="UserOnboarding" isExecutable="true"><bpmn:startEvent id="StartEvent_1" /><bpmn:task id="CreateUserProfile" /><bpmn:task id="VerifyEmail" /><bpmn:task id="AssignRole" /><bpmn:endEvent id="EndEvent_1" /></bpmn:process></bpmn:definitions>

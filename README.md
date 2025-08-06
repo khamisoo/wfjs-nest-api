@@ -55,26 +55,39 @@ This NestJS-based module enables **creation, update, deletion, and monitoring of
 
 ```json
 {
-  "name": "invoice-process",
-  "json": {
-    "id": "Definitions_1",
-    "targetNamespace": "http://bpmn.io/schema/bpmn",
-    "rootElements": [
-      {
-        "$type": "bpmn:Process",
-        "id": "Process_1",
-        "isExecutable": true,
-        "flowElements": [
-          { "$type": "bpmn:StartEvent", "id": "StartEvent_1" },
-          { "$type": "bpmn:Task", "id": "ApproveInvoice" },
-          { "$type": "bpmn:Task", "id": "SendToFinance" },
-          { "$type": "bpmn:Task", "id": "GenerateReceipt" },
-          { "$type": "bpmn:EndEvent", "id": "EndEvent_1" }
-        ]
-      }
-    ]
-  }
-}
+     "name": "test-workflowf",
+     "json": {
+       "$type": "bpmn:Definitions",
+       "id": "Definitions_1",
+       "targetNamespace": "http://bpmn.io/schema/bpmn",
+       "rootElements": [
+         {
+           "$type": "bpmn:Process",
+           "id": "Process_1",
+           "isExecutable": true,
+           "flowElements": [
+             {
+               "$type": "bpmn:Task",
+               "id": "Task_2",
+               "name": "Custom Task"
+             },
+             {
+               "$type": "bpmn:SequenceFlow",
+               "id": "Flow_3",
+               "sourceRef": "UserTask_1",
+               "targetRef": "Task_2"
+             },
+             {
+               "$type": "bpmn:SequenceFlow",
+               "id": "Flow_4",
+               "sourceRef": "Task_2",
+               "targetRef": "EndEvent_1"
+             }
+           ]
+         }
+       ]
+     }
+   }
 ````
 
 ### 📂 File Storage

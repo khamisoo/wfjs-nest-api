@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="Definitions_2" targetNamespace="http://bpmn.io/schema/bpmn"><bpmn:process id="PurchaseApproval" isExecutable="true"><bpmn:startEvent id="StartEvent_2" /><bpmn:task id="SubmitPurchaseRequest" /><bpmn:task id="ReviewRequest" /><bpmn:task id="ApproveOrReject" /><bpmn:endEvent id="EndEvent_2" /></bpmn:process></bpmn:definitions>
