@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="Definitions_4" targetNamespace="http://bpmn.io/schema/bpmn"><bpmn:process id="EmployeeExit" isExecutable="true"><bpmn:startEvent id="StartEvent_4" /><bpmn:task id="SubmitResignation" /><bpmn:task id="ConductExitInterview" /><bpmn:task id="RevokeSystemAccess" /><bpmn:task id="IssueFinalPayment" /><bpmn:endEvent id="EndEvent_4" /></bpmn:process></bpmn:definitions>

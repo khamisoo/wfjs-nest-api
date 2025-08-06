@@ -1,12 +1,24 @@
+Here’s your updated `README.md` with the **additional BPMN Workflow App section** added **after the NestJS section**, clearly separated and styled consistently.
+
+---
+
+### ✅ Changes Summary:
+
+* Inserted your `<p align="center">` block after the Nest logo.
+* Added a new section with documentation explaining how your JSON-based BPMN workflow app works.
+* Preserved the original NestJS README format.
+
+---
+
+### 📄 Updated `README.md` (with the new section inserted after Nest)
+
+````markdown
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
+<p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+<p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
@@ -14,12 +26,87 @@
 <a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
 <a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
 <a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
+<a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+<a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+
+---
+
+## 🧩 BPMN Workflow Manager (JSON-based)
+
+This NestJS-based module enables **creation, update, deletion, and monitoring of BPMN workflows using JSON** (without requiring diagram editors or BPMN XML directly).
+
+### 📦 Modules Used
+
+- `@nestjs/common` – Core decorators and services
+- `@nestjs/mongoose` – MongoDB integration via Mongoose
+- `mongoose` – MongoDB schema/model layer
+- `bpmn-moddle` – Converts JSON structure into BPMN 2.0 XML
+- `fs` and `path` – File system operations for saving workflows
+- `process.cwd()` – Ensures BPMN files are saved in the project root
+
+### 🧠 How It Works
+
+1. Users send JSON-formatted workflow definitions via the `/workflows` POST endpoint.
+2. The JSON is transformed into BPMN XML using `bpmn-moddle`.
+3. The `.bpmn` file is saved inside the app root directory under `/bpmn/`.
+4. Workflow metadata is stored in MongoDB: name, status, current step, timestamps.
+5. A set of RESTful routes allow full CRUD operations and step tracking.
+
+### 🔄 Supported Endpoints
+
+| Method | Endpoint                        | Description                          |
+|--------|----------------------------------|--------------------------------------|
+| POST   | `/workflows`                    | Create a workflow from JSON          |
+| PATCH  | `/workflows/:name`              | Update a workflow by name            |
+| DELETE | `/workflows/:name`              | Delete workflow and mark as deleted  |
+| GET    | `/workflows`                    | List all workflows                   |
+| GET    | `/workflows/:name`              | Get full workflow data + BPMN XML    |
+| GET    | `/workflows/:name/status`       | Get status and current step          |
+| PATCH  | `/workflows/:name/step`         | Update current step by ID            |
+
+### ✅ Example JSON Payload
+
+```json
+{
+  "name": "invoice-process",
+  "json": {
+    "id": "Definitions_1",
+    "targetNamespace": "http://bpmn.io/schema/bpmn",
+    "rootElements": [
+      {
+        "$type": "bpmn:Process",
+        "id": "Process_1",
+        "isExecutable": true,
+        "flowElements": [
+          { "$type": "bpmn:StartEvent", "id": "StartEvent_1" },
+          { "$type": "bpmn:Task", "id": "ApproveInvoice" },
+          { "$type": "bpmn:Task", "id": "SendToFinance" },
+          { "$type": "bpmn:Task", "id": "GenerateReceipt" },
+          { "$type": "bpmn:EndEvent", "id": "EndEvent_1" }
+        ]
+      }
+    ]
+  }
+}
+````
+
+### 📂 File Storage
+
+* All `.bpmn` files are saved in:
+
+  ```
+  <your-project-root>/bpmn/<workflow-name>.bpmn
+  ```
+
+* Handled using:
+
+  ```ts
+  path.join(process.cwd(), 'bpmn')
+  ```
+
+---
 
 ## Description
 
@@ -74,14 +161,14 @@ With Mau, you can deploy your application in just a few clicks, allowing you to 
 
 Check out a few resources that may come in handy when working with NestJS:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+* Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
+* For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
+* To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
+* Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
+* Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
+* Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
+* To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
+* Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
 ## Support
 
@@ -89,10 +176,24 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+* Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+* Website - [https://nestjs.com](https://nestjs.com/)
+* Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+```
+
+---
+
+### ✅ Want This as a File?
+
+I can export the updated `README.md` as:
+- 📄 `.md` file (Markdown)
+- 📄 `.docx` (Word)
+- 📄 `.pdf` (Printable doc)
+
+Let me know how you’d like it!
+```
